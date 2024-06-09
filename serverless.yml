@@ -1,0 +1,30 @@
+service: servicios-bet
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+
+
+functions:
+  app:
+    handler: src/app.handler
+    timeout: 30
+    events:
+      - httpApi:
+          path: /{modulo}
+          method: post
+      - httpApi:
+          path: /{modulo}
+          method: patch
+    environment:
+      HOST: ${env:HOST}
+      USER: ${env:USER}
+      PASSWORD: ${env:PASSWORD}
+      DATABASE: ${env:DATABASE}
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
