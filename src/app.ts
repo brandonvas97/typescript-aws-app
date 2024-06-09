@@ -41,15 +41,14 @@ export const tokenValidation = async (token:string) => {
     let role:string;
     let user_state:string;
     let dict = {};
-    console.log(result)
+
     if (result.length > 0){
         role = result[0].role_user_logged;
         const expiry_date = result[0].expiry_date;
         user_id = result[0].user_id;
         user_state = result[0].user_state;
         const current_time = Math.floor(Date.now() / 1000);
-        console.log(current_time);
-        console.log(expiry_date);
+
         if(current_time > expiry_date){
             dict = {
                 validation: false
@@ -76,11 +75,9 @@ function isValidDate(dateString: string): boolean {
 }
 
 export const handler = async (event) => {
-    console.log(event);
+    //console.log(event);
     const method = event.requestContext.http.method;
     const path = event.requestContext.http.path;
-    console.log(method);
-    console.log(path);
     let body:any
     try{
         body = JSON.parse(event.body);
@@ -99,7 +96,6 @@ export const handler = async (event) => {
             let role:any;
     
             let sql:string = `${"SELECT * FROM users WHERE username = " + "'" + user + "'"}`
-            console.log(sql);
     
             const result = await executeQuery(sql);
 
@@ -138,8 +134,6 @@ export const handler = async (event) => {
             };
 
             const jwt_token = jwt.sign(claims, private_key, { algorithm: 'HS256' });
-            console.log(current_time)
-            console.log(expiration_time)
 
             let sql2:string = `${"INSERT INTO tokens(token, expiry_date, user_id, role_user_logged) VALUES(" + "'" + jwt_token + "', " + "'" + expiration_time + "', " + "'" + user_id + "', " + "'" + role + "')"}`
             const result2 = await executeQuery(sql2);
@@ -243,7 +237,7 @@ export const handler = async (event) => {
             const insertUser = await executeQuery(sqlUser);
 
             let sqlAccount:string = `${"INSERT INTO accounts(amount, user_id) VALUES(" + "'" + "0" + "', " + "'" + insertUser.insertId + "')"}`
-            console.log(sqlAccount);
+
             const insertAccount = await executeQuery(sqlAccount);
             return{
                 statusCode: 200,
@@ -387,7 +381,7 @@ export const handler = async (event) => {
             }else{
                 let dict:any = await tokenValidation(token);
                 let validation:any = dict.validation;
-                console.log(validation)
+
                 if(validation){
                     let role:any = dict.role;
                     let user_state:any = dict.user_state;
@@ -583,7 +577,7 @@ export const handler = async (event) => {
 
                     let betValidationSql:string = `${"SELECT b.bet_option, b.event_id, b.odd, b.status, u.user_id FROM bets AS b INNER JOIN users_bets AS u ON b.event_id = u.bet_id WHERE u.bet_id = "  + "'" + event_id + "'" + "AND u.user_id = " + user_id + " AND u.state = 'open'"}`
                     const resultsValidation = await executeQuery(betValidationSql);
-                    console.log(resultsValidation)
+
                     if(resultsValidation.length > 0){
                         const bet_option = resultsValidation[0].bet_option;
                         if(bet_option != option){
@@ -617,7 +611,7 @@ export const handler = async (event) => {
 
                     let userBetSql:string = `${"INSERT INTO users_bets(user_id, bet_id, odd, amount, bet_option, state, created_at) VALUES(" + user_id + ", " + "'" + event_id + "', " + odd + ", " + amount + ", " + option + ", " + "'" + "open" + "', " + "'" + dateToday + "')"}`
                     const userBetInsert = await executeQuery(userBetSql);
-                    console.log(userBetInsert)
+
                     
                     let insertId:number = userBetInsert.insertId;
                     let transactionSql:string = `${"INSERT INTO transactions(user_id, amount, category, status, created_at, user_bet_id) VALUES(" + user_id + ", " + amount + ", "+ "'" + "bet" + "', " + "'" + "OK" + "', "+ "'" + dateToday + "', " + insertId + ")"}`
@@ -702,7 +696,7 @@ export const handler = async (event) => {
                 if(validation){
                     let role:any = dict.role;
                     let user_state:any = dict.user_state;
-                    console.log(user_state)
+
                     if(user_state == "Blocked"){
                         return{
                             statusCode: 401,
@@ -1097,10 +1091,10 @@ export const handler = async (event) => {
                         let user_id = result.user_id
                         let sum = amount * odd
                         let depositSql:string = `${"UPDATE accounts SET amount = amount + " + sum + " WHERE user_id = " + user_id}`
-                        //console.log(depositSql)
+
                         const depositUpdate = await executeQuery(depositSql);
                         let transactionSql:string = `${"INSERT INTO transactions(user_id, amount, category, status, created_at, user_bet_id) VALUES(" + user_id + ", " + sum + ", "+ "'" + "winning" + "', " + "'" + "OK" + "', "+ "'" + dateToday + "', " + user_bet_id + ")"}`
-                        //console.log(transactionSql)
+
                         const transactionInsert = await executeQuery(transactionSql);
                     }
                     let updateUserBetsSql:string = `${"UPDATE users_bets SET state = CASE WHEN bet_option = " + winner_option + " THEN 'won' ELSE 'lost' END WHERE bet_id = " + "'" + event_id + "'"}`
