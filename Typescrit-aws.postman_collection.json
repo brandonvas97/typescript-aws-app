@@ -69,7 +69,35 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"first_name\":\"Carlos\",\r\n    \"last_name\":\"Velez\",\r\n    \"phone\":\"3002154444\",\r\n    \"address\":\"Cra 15 #80-51\",\r\n    \"gender\":\"M\",\r\n    \"birth_date\":\"1996-07-07\",\r\n    \"country\":\"Colombia\",\r\n    \"city\":\"Bogota\",\r\n    \"document_id\":\"123456789\",\r\n    \"user_id\":3,\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODgyNDAzLCJpYXQiOjE3MTc3OTYwMDN9.Vj_NqNoyfDcVayCMuFlPak61IJAQKBI2ercAwJ3YZ8s\"\r\n}",
+					"raw": "{\r\n    \"first_name\":\"Carlos\",\r\n    \"last_name\":\"Velez\",\r\n    \"phone\":\"3002154444\",\r\n    \"address\":\"Cra 15 #80-51\",\r\n    \"gender\":\"M\",\r\n    \"birth_date\":\"1996-07-07\",\r\n    \"country\":\"Colombia\",\r\n    \"city\":\"Bogota\",\r\n    \"document_id\":\"123456789\",\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODgyNDAzLCJpYXQiOjE3MTc3OTYwMDN9.Vj_NqNoyfDcVayCMuFlPak61IJAQKBI2ercAwJ3YZ8s\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/updateUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User with body for admins",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\":\"Carlos\",\r\n    \"last_name\":\"Velez\",\r\n    \"phone\":\"3002154444\",\r\n    \"address\":\"Cra 15 #80-51\",\r\n    \"gender\":\"M\",\r\n    \"birth_date\":\"1996-07-07\",\r\n    \"country\":\"Colombia\",\r\n    \"city\":\"Bogota\",\r\n    \"document_id\":\"123456789\", \r\n    \"user_id\":3,\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODgyNDAzLCJpYXQiOjE3MTc3OTYwMDN9.Vj_NqNoyfDcVayCMuFlPak61IJAQKBI2ercAwJ3YZ8s\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -153,6 +181,34 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODk3MDgzLCJpYXQiOjE3MTc4MTA2ODN9.AkbjPlc7Nw-eLSO03N8sI-wLV7O0DucEBC8i10S2_Jk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/userBalance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userBalance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Balance with body for admins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
 					"raw": "{\r\n    \"user_id\":3,\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODk3MDgzLCJpYXQiOjE3MTc4MTA2ODN9.AkbjPlc7Nw-eLSO03N8sI-wLV7O0DucEBC8i10S2_Jk\"\r\n}",
 					"options": {
 						"raw": {
@@ -182,6 +238,34 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODA1MjY5LCJpYXQiOjE3MTc3MTg4Njl9.iG4W8ILa1qw777amLpXLUVZ2HO2xhp4uhtTJpSLmEXM\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions with body for admins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\":2,\r\n    \"category\":\"bet\",\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODgyNDAzLCJpYXQiOjE3MTc3OTYwMDN9.Vj_NqNoyfDcVayCMuFlPak61IJAQKBI2ercAwJ3YZ8s\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -253,34 +337,6 @@
 					"port": "3000",
 					"path": [
 						"listBets"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Transactions with body for admins",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"user_id\":2,\r\n    \"category\":\"bet\",\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwdWJsaWNfa2V5IiwiZXhwIjoxNzE3ODgyNDAzLCJpYXQiOjE3MTc3OTYwMDN9.Vj_NqNoyfDcVayCMuFlPak61IJAQKBI2ercAwJ3YZ8s\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/transactions",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"transactions"
 					]
 				}
 			},
