@@ -81,7 +81,16 @@ export const handler = async (event) => {
     const path = event.requestContext.http.path;
     console.log(method);
     console.log(path);
-    let body:any = JSON.parse(event.body);
+    let body:any
+    try{
+        body = JSON.parse(event.body);
+    }catch{
+        return{
+            statusCode: 400,
+            body: JSON.stringify({response: 'Syntax error in your json request'})
+        };
+    }
+    
     if (method == "POST"){
         if (path == '/login'){
             const user = body.user;
@@ -93,7 +102,7 @@ export const handler = async (event) => {
             console.log(sql);
     
             const result = await executeQuery(sql);
-            
+
             if (result.length > 0){
                 const storedPassword = result[0].password;
                 user_id = result[0].id;
